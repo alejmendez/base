@@ -3,6 +3,7 @@
 namespace App\Modules\Base\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+
 use App\Modules\Base\Models\Perfil;
 
 class PerfilesSeeder extends Seeder

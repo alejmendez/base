@@ -15,7 +15,41 @@ $menu['base'] = [
 				'nombre' 	=> 'Perfiles',
 				'direccion' => 'perfiles',
 				'icono' 	=> 'fa fa-users'
-			]
+			],
+			[
+				'nombre' 	=> 'Ubicaciones',
+				'direccion' => '#Ubicaciones',
+				'icono' 	=> 'fa fa-globe',
+				'menu' 		=> [
+
+					[
+						'nombre' 	=> 'Estados',
+						'direccion' => 'estados',
+						'icono' 	=> 'fa fa-map-marker'
+					],
+					[
+						'nombre' 	=> 'Ciudades',
+						'direccion' => 'ciudades',
+						'icono' 	=> 'fa fa-map-pin'
+					],
+					[
+						'nombre' 	=> 'Municipios',
+						'direccion' => 'municipio',
+						'icono' 	=> 'fa fa-map-pin'
+					],
+					[
+						'nombre' 	=> 'Parroquia',
+						'direccion' => 'parroquia',
+						'icono' 	=> 'fa fa-map-pin'
+					],
+					[
+						'nombre' 	=> 'Sector',
+						'direccion' => 'sector',
+						'icono' 	=> 'fa fa-map-pin'
+					]
+				]
+			],
 		]
 	]
 ];
+

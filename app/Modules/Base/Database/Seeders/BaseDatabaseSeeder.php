@@ -18,5 +18,10 @@ class BaseDatabaseSeeder extends Seeder
 
         $this->call(PerfilesSeeder::class);
         $this->call(UsuariosSeeder::class);
+
+        $this->call(EstadosSeeder::class);
+        $this->call(CiudadesSeeder::class);
+        $this->call(MunicipiosSeeder::class);
+        $this->call(ParroquiasSeeder::class);
     }
 }

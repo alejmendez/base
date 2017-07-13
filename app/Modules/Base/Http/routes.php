@@ -61,6 +61,92 @@ Route::group(['middleware' => 'web', 'prefix' => Config::get('admin.prefix'), 'n
 		Route::get('datatable', 		'UsuariosController@datatable');
 	});
 
+
+	Route::group(['prefix' => 'ciudades'], function() {
+		Route::get('/', 				'definiciones\CiudadesController@index');
+		Route::get('buscar/{id}', 		'definiciones\CiudadesController@buscar');
+		Route::get('nuevo', 		    'definiciones\CiudadesController@nuevo');
+
+		Route::get('cambiar/{id}', 		'definiciones\CiudadesController@cambiar');
+		Route::post('guardar',			'definiciones\CiudadesController@guardar');
+		Route::put('guardar/{id}', 		'definiciones\CiudadesController@guardar');
+
+		Route::delete('eliminar/{id}', 	'definiciones\CiudadesController@eliminar');
+		Route::post('restaurar/{id}', 	'definiciones\CiudadesController@restaurar');
+		Route::delete('destruir/{id}', 	'definiciones\CiudadesController@destruir');
+
+		Route::post('cambio', 			'definiciones\CiudadesController@cambio');
+		Route::get('datatable', 		'definiciones\CiudadesController@datatable');
+	});
+
+	Route::group(['prefix' => 'estados'], function() {
+		Route::get('/', 				'definiciones\EstadosController@index');
+		Route::get('buscar/{id}', 		'definiciones\EstadosController@buscar');
+		Route::get('nuevo', 		    'definiciones\EstadosController@nuevo');
+
+		Route::get('cambiar/{id}', 		'definiciones\EstadosController@cambiar');
+		Route::post('guardar',			'definiciones\EstadosController@guardar');
+		Route::put('guardar/{id}', 		'definiciones\EstadosController@guardar');
+
+		Route::delete('eliminar/{id}', 	'definiciones\EstadosController@eliminar');
+		Route::post('restaurar/{id}', 	'definiciones\EstadosController@restaurar');
+		Route::delete('destruir/{id}', 	'definiciones\EstadosController@destruir');
+
+		Route::post('cambio', 			'definiciones\EstadosController@cambio');
+		Route::get('datatable', 		'definiciones\EstadosController@datatable');
+	});
+
+	Route::group(['prefix' => 'municipio'], function() {
+		Route::get('/', 				'definiciones\MunicipioController@index');
+		Route::get('buscar/{id}', 		'definiciones\MunicipioController@buscar');
+		Route::get('nuevo', 		    'definiciones\MunicipioController@nuevo');
+
+		Route::get('cambiar/{id}', 		'definiciones\MunicipioController@cambiar');
+		Route::post('guardar',			'definiciones\MunicipioController@guardar');
+		Route::put('guardar/{id}', 		'definiciones\MunicipioController@guardar');
+
+		Route::delete('eliminar/{id}', 	'definiciones\MunicipioController@eliminar');
+		Route::post('restaurar/{id}', 	'definiciones\MunicipioController@restaurar');
+		Route::delete('destruir/{id}', 	'definiciones\MunicipioController@destruir');
+
+		Route::post('cambio', 			'definiciones\MunicipioController@cambio');
+		Route::get('datatable', 		'definiciones\MunicipioController@datatable');
+	});
+	
+	Route::group(['prefix' => 'parroquia'], function() {
+		Route::get('/', 				'definiciones\ParroquiaController@index');
+		Route::get('buscar/{id}', 		'definiciones\ParroquiaController@buscar');
+		Route::get('nuevo', 		    'definiciones\ParroquiaController@nuevo');
+
+		Route::get('cambiar/{id}', 		'definiciones\ParroquiaController@cambiar');
+		Route::post('guardar',			'definiciones\ParroquiaController@guardar');
+		Route::put('guardar/{id}', 		'definiciones\ParroquiaController@guardar');
+
+		Route::delete('eliminar/{id}', 	'definiciones\ParroquiaController@eliminar');
+		Route::post('restaurar/{id}', 	'definiciones\ParroquiaController@restaurar');
+		Route::delete('destruir/{id}', 	'definiciones\ParroquiaController@destruir');
+
+		Route::post('cambio', 			'definiciones\ParroquiaController@cambio');
+		Route::get('datatable', 		'definiciones\ParroquiaController@datatable');
+	});
+	
+	Route::group(['prefix' => 'sector'], function() {
+		Route::get('/', 				'definiciones\SectorController@index');
+		Route::get('buscar/{id}', 		'definiciones\SectorController@buscar');
+		Route::get('nuevo', 		    'definiciones\SectorController@nuevo');
+
+		Route::get('cambiar/{id}', 		'definiciones\SectorController@cambiar');
+		Route::post('guardar',			'definiciones\SectorController@guardar');
+		Route::put('guardar/{id}', 		'definiciones\SectorController@guardar');
+
+		Route::delete('eliminar/{id}', 	'definiciones\SectorController@eliminar');
+		Route::post('restaurar/{id}', 	'definiciones\SectorController@restaurar');
+		Route::delete('destruir/{id}', 	'definiciones\SectorController@destruir');
+
+		Route::post('cambio', 			'definiciones\SectorController@cambio');
+		Route::get('datatable', 		'definiciones\SectorController@datatable');
+	});
+
 });
 
 Route::group(['middleware' => 'web', 'prefix' => 'img/', 'namespace' => 'App\Modules\Base\Http\Controllers'], function() {
