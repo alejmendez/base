@@ -12,21 +12,21 @@ use Yajra\Datatables\Datatables;
 use Illuminate\Database\QueryException;
 
 //Request
-use App\Modules\Base\Http\Requests\ProfesionRequest;
+use App\Modules\Base\Http\Requests\TipoPersonaRequest;
 
 //Modelos
-use App\Modules\Base\Models\Profesion;
+use App\Modules\Base\Models\TipoPersona;
 
-class ProfesionController extends Controller
+class TipoPersonaController extends Controller
 {
-    protected $titulo = 'Profesion';
+    protected $titulo = 'Tipo Persona';
 
     public $js = [
-        'Profesion'
+        'TipoPersona'
     ];
     
     public $css = [
-        'Profesion'
+        'TipoPersona'
     ];
 
     public $librerias = [
@@ -37,39 +37,39 @@ class ProfesionController extends Controller
 
     public function index()
     {
-        return $this->view('base::Profesion', [
-            'Profesion' => new Profesion()
+        return $this->view('base::TipoPersona', [
+            'TipoPersona' => new TipoPersona()
         ]);
     }
 
     public function nuevo()
     {
-        $Profesion = new Profesion();
-        return $this->view('base::Profesion', [
+        $TipoPersona = new TipoPersona();
+        return $this->view('base::TipoPersona', [
             'layouts' => 'base::layouts.popup',
-            'Profesion' => $Profesion
+            'TipoPersona' => $TipoPersona
         ]);
     }
 
     public function cambiar(Request $request, $id = 0)
     {
-        $Profesion = Profesion::find($id);
-        return $this->view('base::Profesion', [
+        $TipoPersona = TipoPersona::find($id);
+        return $this->view('base::TipoPersona', [
             'layouts' => 'base::layouts.popup',
-            'Profesion' => $Profesion
+            'TipoPersona' => $TipoPersona
         ]);
     }
 
     public function buscar(Request $request, $id = 0)
     {
         if ($this->permisologia($this->ruta() . '/restaurar') || $this->permisologia($this->ruta() . '/destruir')) {
-            $Profesion = Profesion::withTrashed()->find($id);
+            $TipoPersona = TipoPersona::withTrashed()->find($id);
         } else {
-            $Profesion = Profesion::find($id);
+            $TipoPersona = TipoPersona::find($id);
         }
 
-        if ($Profesion) {
-            return array_merge($Profesion->toArray(), [
+        if ($TipoPersona) {
+            return array_merge($TipoPersona->toArray(), [
                 's' => 's',
                 'msj' => trans('controller.buscar')
             ]);
@@ -78,15 +78,14 @@ class ProfesionController extends Controller
         return trans('controller.nobuscar');
     }
 
-    public function guardar(ProfesionRequest $request, $id = 0)
+    public function guardar(TipoPersonaRequest $request, $id = 0)
     {
         DB::beginTransaction();
         try{
-            $Profesion = $id == 0 ? new Profesion() : Profesion::find($id);
-            $datos = $request->all();
-            $datos['slug'] = str_slug($request->nombre, '-');
-            $Profesion->fill($datos);
-            $Profesion->save();
+            $TipoPersona = $id == 0 ? new TipoPersona() : TipoPersona::find($id);
+
+            $TipoPersona->fill($request->all());
+            $TipoPersona->save();
         } catch(QueryException $e) {
             DB::rollback();
             return $e->getMessage();
@@ -97,8 +96,8 @@ class ProfesionController extends Controller
         DB::commit();
 
         return [
-            'id'    => $Profesion->id,
-            'texto' => $Profesion->nombre,
+            'id'    => $TipoPersona->id,
+            'texto' => $TipoPersona->nombre,
             's'     => 's',
             'msj'   => trans('controller.incluir')
         ];
@@ -107,7 +106,7 @@ class ProfesionController extends Controller
     public function eliminar(Request $request, $id = 0)
     {
         try{
-            Profesion::destroy($id);
+            TipoPersona::destroy($id);
         } catch (QueryException $e) {
             return $e->getMessage();
         } catch (Exception $e) {
@@ -120,7 +119,7 @@ class ProfesionController extends Controller
     public function restaurar(Request $request, $id = 0)
     {
         try {
-            Profesion::withTrashed()->find($id)->restore();
+            TipoPersona::withTrashed()->find($id)->restore();
         } catch (QueryException $e) {
             return $e->getMessage();
         } catch (Exception $e) {
@@ -133,7 +132,7 @@ class ProfesionController extends Controller
     public function destruir(Request $request, $id = 0)
     {
         try {
-            Profesion::withTrashed()->find($id)->forceDelete();
+            TipoPersona::withTrashed()->find($id)->forceDelete();
         } catch (QueryException $e) {
             return $e->getMessage();
         } catch (Exception $e) {
@@ -145,7 +144,7 @@ class ProfesionController extends Controller
 
     public function datatable(Request $request)
     {
-        $sql = Profesion::select([
+        $sql = TipoPersona::select([
             'id', 'nombre', 'deleted_at'
         ]);
 

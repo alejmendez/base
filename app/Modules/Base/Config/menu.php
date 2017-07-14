@@ -49,6 +49,42 @@ $menu['base'] = [
 					]
 				]
 			],
+			[
+				'nombre' 	=> 'Personas',
+				'direccion' => '#Personas',
+				'icono' 	=> 'fa fa-gear',
+				'menu' 		=> [
+					[
+						'nombre' 	=> 'Definiciones',
+						'direccion' => '#DefinicionesPersonas',
+						'icono' 	=> 'fa fa-gear',
+						'menu' 		=> [
+							[
+								'nombre' 	=> 'Profesion',
+								'direccion' => 'personas/profesion',
+								'icono' 	=> 'fa fa-briefcase'
+							],
+							[
+								'nombre' 	=> 'Tipo de telefono',
+								'direccion' => 'personas/telefonotipo',
+								'icono' 	=> 'fa fa-phone'
+							],
+							[
+								'nombre' 	=> 'Tipo de Persona',
+								'direccion' => 'personas/tipopersona',
+								'icono' 	=> 'fa fa-users'
+							]
+
+						]
+					],[
+						'nombre' 	=> 'Persona',
+						'direccion' => 'personas/persona',
+						'icono' 	=> 'fa fa-plus'
+					]
+				]
+			]
+
+
 		]
 	]
 ];

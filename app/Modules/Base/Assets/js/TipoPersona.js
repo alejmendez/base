@@ -10,7 +10,7 @@ $(function() {
 
     tabla = datatable('#tabla', {
         ajax: $url + "datatable",
-        columns: [{ "data": "estado", "name": "estados.nombre" }, { "data": "nombre", "name": "ciudades.nombre" }]
+        columns: [{ "data": "nombre", "name": "nombre" }]
     });
 
     $('#tabla').on("click", "tbody tr", function() {

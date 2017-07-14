@@ -23,5 +23,11 @@ class BaseDatabaseSeeder extends Seeder
         $this->call(CiudadesSeeder::class);
         $this->call(MunicipiosSeeder::class);
         $this->call(ParroquiasSeeder::class);
+   
+        
+        $this->call(ProfesionSeeder::class);
+		$this->call(TipoTelefonoSeeder::class);
+		$this->call(TipoPersonasSeeder::class);
+	
     }
 }
