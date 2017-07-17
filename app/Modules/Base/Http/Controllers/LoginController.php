@@ -8,11 +8,13 @@ use Session;
 
 //Request
 use App\Modules\Base\Http\Requests\LoginRequest;
-
+use App\Modules\Base\Http\Requests\LoginfotoRequest;
 //Controlador Padre
 use App\Modules\Base\Http\Controllers\Controller;
 
 //Modelos
+use App\Modules\Base\Models\Usuario;
+use App\Modules\Base\Models\Personas;
 
 class LoginController extends Controller {
 	public $autenticar = false;
@@ -61,7 +63,7 @@ class LoginController extends Controller {
 		if (!$autenticado) {
 			$idregistro = 'Clave:' . $data['password'];
 			$data = [
-				'correo' => $data['usuario'],
+				//'correo' => $data['usuario'],
 				'password' => $data['password']
 			];
 			
@@ -73,5 +75,15 @@ class LoginController extends Controller {
 		}
 
 		return ['s' => 'n', 'msj' => 'La combinacion de Usuario y Clave no Concuerdan.'];
+	}
+	public function foto(LoginfotoRequest $request){
+		
+		$usuario = $request->usuario;
+
+		$user = Usuario::select('personas_id')->where('usuario','=', $usuario)->first();
+
+		$foto = Personas::select('foto')->where('id','=',$user->personas_id)->first();
+
+		return ['foto'=>$foto->foto];
 	}
 }

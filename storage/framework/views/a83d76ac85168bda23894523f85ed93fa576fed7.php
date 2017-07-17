@@ -13,39 +13,45 @@ $html['titulo'] = 'Inicio de Sesión';
 <!--[if IE 9]>    <html lang="es" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!--><html lang="es"><!--<![endif]-->
 <head>
-	@include('base::partials.head')
+	<?php echo $__env->make('base::partials.head', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </head><!--/head-->
 
 	<body class="login">
 		<div class="logo">
-			<a href="{{ url(\Config::get('admin.prefix')) }}">
-				<img src="{{ asset('img/logos/253x123/' . $controller->conf('login_logo')) }}" alt="Logo" />
+			<a href="<?php echo e(url(\Config::get('admin.prefix'))); ?>">
+				<img src="<?php echo e(asset('img/logos/253x123/' . $controller->conf('login_logo'))); ?>" alt="Logo" />
 			</a>
 		</div>
 		<div class="content">
-			{!! Form::open(array('id' => 'formulario', 'url' => 'login')) !!}
-				<h3 class="form-title font-green">{{$controller->conf('nombre')}}</h3>
+			<?php echo Form::open(array('id' => 'formulario', 'url' => 'login')); ?>
+
+				<h3 class="form-title font-green"><?php echo e($controller->conf('nombre')); ?></h3>
 				<div>
-					<img alt="" class="profile-img"  id="foto" src="{{ url('public/img/usuarios/user.png') }}">
+					<img alt="" class="profile-img"  id="foto" src="<?php echo e(url('public/img/usuarios/user.png')); ?>">
 				</div>
 				<div class="form-group">
-					<label class="control-label visible-ie8 visible-ie9">{{ Lang::get('login.user') }}</label>
-					{!! Form::text('nombre', '', ['class' => 'form-control form-control-solid placeholder-no-fix user', 'autocomplete' => 'off', 'placeholder' => Lang::get('login.user')]) !!}
+					<label class="control-label visible-ie8 visible-ie9"><?php echo e(Lang::get('login.user')); ?></label>
+					<?php echo Form::text('nombre', '', ['class' => 'form-control form-control-solid placeholder-no-fix user', 'autocomplete' => 'off', 'placeholder' => Lang::get('login.user')]); ?>
+
 				</div>
 
 				<div class="form-group">
-					<label class="control-label visible-ie8 visible-ie9">{{ Lang::get('login.password') }}</label>
-					{!! Form::password('password', ['class' => 'form-control form-control-solid placeholder-no-fix', 'autocomplete' => 'off', 'placeholder' => Lang::get('login.password')]) !!}
+					<label class="control-label visible-ie8 visible-ie9"><?php echo e(Lang::get('login.password')); ?></label>
+					<?php echo Form::password('password', ['class' => 'form-control form-control-solid placeholder-no-fix', 'autocomplete' => 'off', 'placeholder' => Lang::get('login.password')]); ?>
+
 				</div>
 
 				<label class="rememberme check mt-checkbox mt-checkbox-outline">
-					{!! Form::checkbox('recordar', '1', false) !!}
-					{{ Lang::get('login.remember_me') }}
+					<?php echo Form::checkbox('recordar', '1', false); ?>
+
+					<?php echo e(Lang::get('login.remember_me')); ?>
+
 					<span></span>
 				</label>
 
 				<div class="form-actions" style="text-align: center;">
-					{!! Form::button(Lang::get('login.log_in'), ['class' => 'btn green uppercase']) !!}
+					<?php echo Form::button(Lang::get('login.log_in'), ['class' => 'btn green uppercase']); ?>
+
 				</div>
 				
 				<!-- <div class="login-options">
@@ -67,19 +73,20 @@ $html['titulo'] = 'Inicio de Sesión';
 				</div> -->
 
 				<div class="create-account">
-					<p>{{ date('Y') }} &copy; Gobernaci&oacute;n del Estado Bolívar.</p>
+					<p><?php echo e(date('Y')); ?> &copy; Gobernaci&oacute;n del Estado Bolívar.</p>
 					<!-- 	Desarrollado por:  Gobernacion del Estado Bolívar / Division de desarrollo Web 
 							Alejandro Mendez alejmendez.87@gmail.com
 							Luis Mata lmata1793@gmail.com
 							Miguelangel Gutierrez Drummermiguelangel@gmail.com 	
 					 -->
 				</div>
-			{!! Form::close() !!}
+			<?php echo Form::close(); ?>
+
 		</div>
 		<script type="text/javascript" charset="utf-8" async defer>
-		var ruta= "{{ asset('public/img/usuarios') }}";
+		var ruta= "<?php echo e(asset('public/img/usuarios')); ?>";
 		</script>
-		@include('base::partials.footer')
+		<?php echo $__env->make('base::partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 	
 

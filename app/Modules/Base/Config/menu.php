@@ -50,6 +50,11 @@ $menu['base'] = [
 				]
 			],
 			[
+				'nombre' 	=> 'Configuracion',
+				'direccion' => 'configuracion',
+				'icono' 	=> 'fa fa-gear'
+			],
+			[
 				'nombre' 	=> 'Personas',
 				'direccion' => '#Personas',
 				'icono' 	=> 'fa fa-gear',

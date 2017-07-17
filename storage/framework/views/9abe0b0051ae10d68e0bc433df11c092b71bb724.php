@@ -1,21 +1,19 @@
-@extends(isset($layouts) ? $layouts : 'base::layouts.default')
+<?php $__env->startSection('content-top'); ?>
+	<?php echo $__env->make('base::partials.botonera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-@section('content-top')
-	@include('base::partials.botonera')
+	<?php echo $__env->make('base::partials.ubicacion', ['ubicacion' => ['Usuarios']], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-	@include('base::partials.ubicacion', ['ubicacion' => ['Usuarios']])
-
-	@include('base::partials.modal-busqueda', [
+	<?php echo $__env->make('base::partials.modal-busqueda', [
 		'titulo' => 'Buscar Usuarios.',
 		'columnas' => [
 			'Usuario' => '30',
 			'Cedula'  => '30',
 			'Nombre'  => '40'
 		]
-	])
-@endsection
+	], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 	<div class="row">
 		<form id="formulario" name="formulario" enctype="multipart/form-data" method="POST" autocomplete="off">
@@ -25,7 +23,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="mt-overlay-6">
-									<img  id="foto" src="{{ url('public/img/usuarios/user.png') }}" class="img-responsive" alt="">
+									<img  id="foto" src="<?php echo e(url('public/img/usuarios/user.png')); ?>" class="img-responsive" alt="">
 									<div class="mt-overlay">
 										<h2> </h2>
 										<p>
@@ -61,35 +59,40 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_0">
 						<div class="row">
-							{{ Form::hidden('permisos', '', ['id' => 'permisos']) }}
+							<?php echo e(Form::hidden('permisos', '', ['id' => 'permisos'])); ?>
 
-							{{ Form::bsText('usuario', '', [
+
+							<?php echo e(Form::bsText('usuario', '', [
 								'label' => 'Usuario',
 								'placeholder' => 'Login del Usuario',
 								'required' => 'required'
-							]) }}
+							])); ?>
 
-							{{ Form::bsPassword('password', '', [
+
+							<?php echo e(Form::bsPassword('password', '', [
 								'label' => 'Contrase&ntilde;a',
 								'placeholder' => 'Contrase&ntilde;a del Usuario',
 								'required' => 'required'
-							]) }}
+							])); ?>
 
-							{{ Form::bsSelect('perfil_id', $controller->perfiles(), '', [
+
+							<?php echo e(Form::bsSelect('perfil_id', $controller->perfiles(), '', [
 								'label' => 'Perfil',
 								'required' => 'required'
-							]) }}
+							])); ?>
 
-							@if ($usuario->super === 's')
-								{{ Form::bsSelect('super', [
+
+							<?php if($usuario->super === 's'): ?>
+								<?php echo e(Form::bsSelect('super', [
 									'n' => 'No',
 									's' => 'Si',
 								], 'n',
 								[
 									'label' => '&iquest;Es Super Usuario?',
 									'required' => 'required'
-								]) }}
-							@endif
+								])); ?>
+
+							<?php endif; ?>
 
 							
 				     
@@ -102,20 +105,24 @@
 					</div>
 					<div class="tab-pane" id="tab_1">
 						<div class="row">
-							 {!! $Personas->generate() !!}
+							 <?php echo $Personas->generate(); ?>
+
 							 <div class="col-md-12"></div>
-							 {!! $Personas_telefono->generate() !!}
-							 {!! $Personas_correo->generate() !!}
+							 <?php echo $Personas_telefono->generate(); ?>
+
+							 <?php echo $Personas_correo->generate(); ?>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</form>
 	</div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('js')
+<?php $__env->startPush('js'); ?>
 	<script>
-		var imagenDefault = "{{ url('public/img/usuarios/user.png') }}";
+		var imagenDefault = "<?php echo e(url('public/img/usuarios/user.png')); ?>";
 	</script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make(isset($layouts) ? $layouts : 'base::layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

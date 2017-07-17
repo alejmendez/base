@@ -1,6 +1,5 @@
-@extends('base::layouts.default')
-@section('content')
-	@include('base::partials.ubicacion', ['ubicacion' => ['Perfil de Usuario']])
+<?php $__env->startSection('content'); ?>
+	<?php echo $__env->make('base::partials.ubicacion', ['ubicacion' => ['Perfil de Usuario']], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 	<div class="row">
 		<div class="profile-sidebar col-md-3">
@@ -8,7 +7,7 @@
 				<div class="mt-element-overlay">
 					<div class="col-md-12">
 						<div class="mt-overlay-6">
-							<img id="foto" src="{{ url('public/img/usuarios/' . (is_file('public/img/usuarios/' . $usuario->personas->foto) ? $usuario->personas->foto : 'user.png')) }}" class="img-responsive" alt="" />
+							<img id="foto" src="<?php echo e(url('public/img/usuarios/' . (is_file('public/img/usuarios/' . $usuario->personas->foto) ? $usuario->personas->foto : 'user.png'))); ?>" class="img-responsive" alt="" />
 							<div class="mt-overlay">
 								<h2> </h2>
 								<p>
@@ -23,8 +22,8 @@
 				</div>
 
 				<div class="profile-usertitle">
-					<div class="profile-usertitle-name"> {{ $usuario->nombre }} <span id="ape"> </span> </div>
-					<div class="profile-usertitle-job"> {{ $usuario->usuario }} </div>
+					<div class="profile-usertitle-name"> <?php echo e($usuario->nombre); ?> <span id="ape"> </span> </div>
+					<div class="profile-usertitle-job"> <?php echo e($usuario->usuario); ?> </div>
 				</div>
 				<br />
 			</div>
@@ -59,14 +58,17 @@
 	                            <div class="portlet-body">
 	                                <div class="tab-content">
 	                                    <div class="tab-pane active" id="tab_1_1">
-	                                       {!! $Personas->generate() !!}
+	                                       <?php echo $Personas->generate(); ?>
+
 	                                    </div>
 
 	                                    <div class="tab-pane " id="tab_1_2">
-	                                      {!! $Personas_detalles->generate() !!}
+	                                      <?php echo $Personas_detalles->generate(); ?>
+
 	                                    </div>
 	                                    <div class="tab-pane" id="tab_1_3">
-	                                      {!! $Personas_direccion->generate() !!}
+	                                      <?php echo $Personas_direccion->generate(); ?>
+
 	                                    </div>
 	                                    <div class="tab-pane" id="tab_1_4">
 	                                        <div class="col-md-12"> 
@@ -141,8 +143,8 @@
 	         
         </form>
 	</div>
-@endsection
-@push('css')
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('css'); ?>
 <style type="text/css">
 	#upload_link{
 	text-decoration:none;
@@ -161,28 +163,30 @@
 	}
 
 </style>
-@endpush
-@push('js')
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('js'); ?>
 
-{{-- telefonos --}}
+
 <script type="text/x-tmpl" id="tmpl-demo3">
     {% for (var i=0, file; file=o.datos[i]; i++) { %}
         <input type="hidden" name="id_telefonos[]" value="{%=file.id%}">
-       {{ Form::bsSelect('tipo_telefono', $controller->tipotelefono(), '{%=intval(file.tipo_telefono_id)%}', [
+       <?php echo e(Form::bsSelect('tipo_telefono', $controller->tipotelefono(), '{%=intval(file.tipo_telefono_id)%}', [
         'label'         => 'tipo de telefono',
         'placeholder'   => 'tipo de telefono',
         'name'          => 'tipo_telefono[]',
         'required'      => 'required',
         'class_cont'    => 'col-md-4 col-sm-6 col-xs-12'
-    ]) }}
-    {{ Form::bsText('numero', '{%=file.numero%}', [
+    ])); ?>
+
+    <?php echo e(Form::bsText('numero', '{%=file.numero%}', [
         'label'         => 'N&uacute;mero de Telefonos',
         'placeholder'   => 'N&uacute;mero de Telefonos',
         'name'          => 'numero[]',
         'required'      => 'required',
         'class_cont'    => 'col-md-4 col-sm-6 col-xs-12'
-    ]) }}
-    {{ Form::bsSelect('Principal_tlf',[
+    ])); ?>
+
+    <?php echo e(Form::bsSelect('Principal_tlf',[
          1=>'Si',
          0=> 'No'
         ], '{%=file.principal%}', [
@@ -191,27 +195,30 @@
         'name'          => 'principal_tlf[]',
         'required'      => 'required',
         'class_cont'    => 'col-md-4 col-sm-6 col-xs-12'
-    ]) }}
+    ])); ?>
+
     <div class="col-md-12"></div>
     {% } %}
 </script>
 <script type="text/x-tmpl" id="tmpl-demo4">
     <input type="hidden" name="id_telefonos[]" value="0">
-    {{ Form::bsSelect('tipo_telefono', $controller->tipotelefono(), '', [
+    <?php echo e(Form::bsSelect('tipo_telefono', $controller->tipotelefono(), '', [
         'label'         => 'tipo de telefono',
         'placeholder'   => 'tipo de telefono',
         'name'          => 'tipo_telefono[]',
         'required'      => 'required',
         'class_cont'    => 'col-md-4 col-sm-6 col-xs-12'
-    ]) }}
-    {{ Form::bsText('numero', '', [
+    ])); ?>
+
+    <?php echo e(Form::bsText('numero', '', [
         'label'         => 'N&uacute;mero de Telefonos',
         'placeholder'   => 'N&uacute;mero de Telefonos',
         'name'          => 'numero[]',
         'required'      => 'required',
         'class_cont'    => 'col-md-4 col-sm-6 col-xs-12'
-    ]) }}
-    {{ Form::bsSelect('Principal',[
+    ])); ?>
+
+    <?php echo e(Form::bsSelect('Principal',[
          1=>'Si',
          0=> 'No'
         ], '', [
@@ -220,21 +227,23 @@
         'name'          => 'principal_tlf[]',
         'required'      => 'required',
         'class_cont'    => 'col-md-4 col-sm-6 col-xs-12'
-    ]) }}
+    ])); ?>
+
     <div class="col-md-12"></div>
 </script>
-{{-- Correos --}}
+
 <script type="text/x-tmpl" id="tmpl-demo5">
     {% for (var i=0, file; file=o.datos[i]; i++) { %}
         <input type="hidden" name="id_correo[]" value="{%=file.id%}">
-       {{ Form::bsText('correo', '{%=file.correo%}', [
+       <?php echo e(Form::bsText('correo', '{%=file.correo%}', [
         'label'         => 'Correo',
         'placeholder'   => 'Correo',
         'name'          => 'correo[]',
         'required'      => 'required',
         'class_cont'    => 'col-md-4 col-sm-6 col-xs-12'
-        ]) }}
-       {{ Form::bsSelect('Principal',[
+        ])); ?>
+
+       <?php echo e(Form::bsSelect('Principal',[
          1=>'Si',
          0=> 'No'
         ], '{%=file.principal%}', [
@@ -243,20 +252,21 @@
         'name'          => 'principal_correo[]',
         'required'      => 'required',
         'class_cont'    => 'col-md-4 col-sm-6 col-xs-12'
-         ]) }}
+         ])); ?>
+
          <div class="col-md-12"></div>
     {% } %}
 </script>
 <script type="text/x-tmpl" id="tmpl-demo6">
     <input type="hidden" name="id_correo[]" value="0">
-    {{ Form::bsText('correo', '', [
+    <?php echo e(Form::bsText('correo', '', [
         'label'         => 'Correo',
         'placeholder'   => 'Correo',
         'name'          => 'correo[]',
         'required'      => 'required',
         'class_cont'    => 'col-md-4 col-sm-6 col-xs-12'
-    ]) }} 
-    {{ Form::bsSelect('Principal',[
+    ])); ?> 
+    <?php echo e(Form::bsSelect('Principal',[
          1=>'Si',
          0=> 'No'
         ], '', [
@@ -265,10 +275,12 @@
         'name'          => 'principal_correo[]',
         'required'      => 'required',
         'class_cont'    => 'col-md-4 col-sm-6 col-xs-12'
-    ]) }}
+    ])); ?>
+
     <div class="col-md-12"></div>
 </script>
 <script  type="text/javascript">
-	var $id = '{{$usuario->personas_id}}';
+	var $id = '<?php echo e($usuario->personas_id); ?>';
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('base::layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

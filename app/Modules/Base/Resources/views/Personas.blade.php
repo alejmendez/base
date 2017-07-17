@@ -59,17 +59,12 @@
                                     <li class="datos_generales">
                                         <a href="#tab_1_2" data-toggle="tab">Datos Generales</a>
                                     </li>
-                                     
                                     <li>
                                         <a href="#tab_1_3" data-toggle="tab">Direccion</a>
                                     </li> 
                                     <li>
-                                        <a href="#tab_1_4" data-toggle="tab">Cuentas Bancarias</a>
-                                    </li>
-                                    <li>
                                         <a href="#tab_1_5" data-toggle="tab">Datos Contacto</a>
                                     </li>
-                                    
                                 </ul>
                             </div>
                             <div class="portlet-body">

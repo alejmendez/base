@@ -17,17 +17,16 @@ class BaseDatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call(PerfilesSeeder::class);
-        $this->call(UsuariosSeeder::class);
 
         $this->call(EstadosSeeder::class);
         $this->call(CiudadesSeeder::class);
         $this->call(MunicipiosSeeder::class);
         $this->call(ParroquiasSeeder::class);
-   
-        
+
         $this->call(ProfesionSeeder::class);
 		$this->call(TipoTelefonoSeeder::class);
 		$this->call(TipoPersonasSeeder::class);
-	
+        $this->call(UsuariosSeeder::class);
+	   $this->call(ConfiguracionSeeder::class);
     }
 }

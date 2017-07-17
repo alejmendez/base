@@ -4,8 +4,8 @@
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
 				<div class="page-logo">
-					<a href="{{ url('/') }}">
-						<img src="{{ asset('img/logos/168x68/' . $controller->conf('logo')) }}" alt="logo" class="logo-default" />
+					<a href="<?php echo e(url('/')); ?>">
+						<img src="<?php echo e(asset('img/logos/168x68/' . $controller->conf('logo'))); ?>" alt="logo" class="logo-default" />
 					</a>
 				</div>
 				<!-- END LOGO -->
@@ -18,38 +18,38 @@
 						<!-- BEGIN USER LOGIN DROPDOWN -->
 						<li class="dropdown dropdown-user dropdown-dark">
 							<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-								@if(is_file('public/img/usuarios/' . $usuario->personas->foto))
-									<img alt="" class="img-circle" src="{{ url('img/usuarios/40x40/' . $usuario->personas->foto) }}">
-								@else
-									<img alt="" class="img-circle" src="{{ url('img/usuarios/40x40/user.png') }}">
-								@endif
-								<span class="username username-hide-mobile">{{ $usuario->personas->nombres }}</span>
+								<?php if(is_file('public/img/usuarios/' . $usuario->personas->foto)): ?>
+									<img alt="" class="img-circle" src="<?php echo e(url('img/usuarios/40x40/' . $usuario->personas->foto)); ?>">
+								<?php else: ?>
+									<img alt="" class="img-circle" src="<?php echo e(url('img/usuarios/40x40/user.png')); ?>">
+								<?php endif; ?>
+								<span class="username username-hide-mobile"><?php echo e($usuario->personas->nombres); ?></span>
 							</a>
-							@if($usuario->id > 0)
+							<?php if($usuario->id > 0): ?>
 							<ul class="dropdown-menu dropdown-menu-default">
 								<li>
-									<a href="{{ url(Config::get('admin.prefix').'/perfil') }}">
+									<a href="<?php echo e(url(Config::get('admin.prefix').'/perfil')); ?>">
 										<i class="fa fa-user"></i> Mi Perfil
 									</a>
 								</li>
 								<li class="divider"> </li>
 								<li>
-									<a href="{{ url(Config::get('admin.prefix').'/login/bloquear') }}">
+									<a href="<?php echo e(url(Config::get('admin.prefix').'/login/bloquear')); ?>">
 										<i class="icon-lock"></i> Bloquear Pantalla
 									</a>
 								</li>
 								<li>
-									<a href="{{ url(Config::get('admin.prefix').'/login/salir') }}">
+									<a href="<?php echo e(url(Config::get('admin.prefix').'/login/salir')); ?>">
 										<i class="icon-logout"></i> Salir
 									</a>
 								</li>
 							</ul>
-							@endif
+							<?php endif; ?>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
 						<!-- BEGIN QUICK SIDEBAR TOGGLER -->
 						<li class="">
-							<a href="{{ url(Config::get('admin.prefix').'/login/salir') }}">
+							<a href="<?php echo e(url(Config::get('admin.prefix').'/login/salir')); ?>">
 								<span class="sr-only">Salir</span>
 								<i class="icon-logout"></i> 
 							</a>
@@ -61,5 +61,5 @@
 			</div>
 		</div>
 		<!-- END HEADER TOP -->
-		@include('base::partials.menu')
+		<?php echo $__env->make('base::partials.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 	</div>

@@ -16,4 +16,6 @@ class UsuarioPermisos extends Model {
 		// belongsTo = "pertenece a" | hace relacion desde el detalle hasta el maestro
 		return $this->belongsTo('App\Modules\Base\Models\Usuario', 'usuario_id');
 	}
+
+	
 }

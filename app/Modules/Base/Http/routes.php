@@ -10,6 +10,7 @@ Route::group(['middleware' => 'web', 'prefix' => Config::get('admin.prefix'), 'n
 	Route::group(['prefix' => 'login'], function() {
 		Route::get('/', 				'LoginController@index')->name('login');
 		Route::get('salir', 			'LoginController@salir')->name('logout');
+		Route::post('foto', 			'LoginController@foto');
 		Route::post('validar', 			'LoginController@validar');
 		Route::get('bloquear', 			'LoginController@bloquear');
 	});
@@ -35,10 +36,24 @@ Route::group(['middleware' => 'web', 'prefix' => Config::get('admin.prefix'), 'n
 	 */
 
 	Route::group(['prefix' => 'perfil'], function() {
-		Route::get('/', 				'PerfilController@index');
+	/* 	Route::get('/', 				'PerfilController@index');
 		Route::put('actualizar', 		'PerfilController@actualizar');
 		Route::put('clave', 			'PerfilController@clave');
 		Route::post('cambio', 			'PerfilController@cambio');
+ 	*/
+		Route::get('/', 			'PerfilController@index');
+		Route::get('buscar/{id}', 	'PerfilController@buscar');
+		Route::put('guardar/{id}', 	'PerfilController@guardar');
+		Route::put('clave', 		'PerfilController@clave');
+		Route::post('cambio', 		'PerfilController@cambio');
+		Route::get('ciudades/{id}',     'PerfilController@ciudades');
+		Route::get('municipios/{id}',   'PerfilController@municipios');
+		Route::get('parroquias/{id}',   'PerfilController@parroquias');
+		Route::get('sectores/{id}',    	'PerfilController@sectores');
+
+		Route::get('telefonos',    	    'PerfilController@personastelefono');
+		Route::get('correo',    	    'PerfilController@personascorreos');
+		Route::get('validar',    	    'PerfilController@validar');
 	});
 
 	/**
@@ -51,7 +66,7 @@ Route::group(['middleware' => 'web', 'prefix' => Config::get('admin.prefix'), 'n
 
 		Route::post('guardar',			'UsuariosController@guardar');
 		Route::put('guardar/{id}', 		'UsuariosController@guardar');
-
+		Route::post('validar',			'UsuariosController@validar');
 		Route::delete('eliminar/{id}', 	'UsuariosController@eliminar');
 		Route::post('restaurar/{id}', 	'UsuariosController@restaurar');
 		Route::delete('destruir/{id}', 	'UsuariosController@destruir');
@@ -59,6 +74,11 @@ Route::group(['middleware' => 'web', 'prefix' => Config::get('admin.prefix'), 'n
 		Route::post('cambio', 			'UsuariosController@cambio');
 		Route::get('arbol', 			'UsuariosController@arbol');
 		Route::get('datatable', 		'UsuariosController@datatable');
+	});
+	Route::group(['prefix' => 'configuracion'], function() {
+		Route::get('/', 				'ConfiguracionController@index');
+		Route::post('guardar',			'ConfiguracionController@guardar');
+		Route::put('guardar/{id}', 		'ConfiguracionController@guardar');
 	});
 
 

@@ -7,7 +7,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-use App\Modules\Base\Models\Modelo;
+use  App\Modules\Base\Models\Modelo;
 
 class Usuario extends Modelo implements AuthenticatableContract, CanResetPasswordContract {
 	use Authenticatable, CanResetPassword;
@@ -16,37 +16,24 @@ class Usuario extends Modelo implements AuthenticatableContract, CanResetPasswor
 	protected $fillable = [
 		'usuario', 
 		'password',
-		'dni', 
-		'nombre', 
-		'apellido',
-		'correo', 
-		'telefono', 
-		'foto',
-		'autenticacion', 
 		'super', 
 		'perfil_id',
-		'sexo',
-		'edo_civil',
-		'direccion',
-		'facebook',
-		'instagram',
-		'twitter'
-	];
+		'personas_id',
 
+	];
+	
 	protected $hidden = ['password', 'remember_token', 'created_at', 'updated_at'];
 
 	public $permisos = [];
 
-	public function setPasswordAttribute($value){
+	public function setPasswordAttribute($value)
+	{
         $this->attributes['password'] = \Hash::make($value);
     }
 
-    public function setUsuarioAttribute($value){
+    public function setUsuarioAttribute($value)
+    {
         $this->attributes['usuario'] = strtolower($value);
-    }
-
-    public function setCorreoAttribute($value){
-        $this->attributes['correo'] = strtolower($value);
     }
 
 	public function permisos(){
@@ -65,16 +52,25 @@ class Usuario extends Modelo implements AuthenticatableContract, CanResetPasswor
 			->where('app_usuario.id', $this->id)
 			->union($perfiles_permisos);
 
+
 		$this->permisos = $usuario_permisos->get()->pluck('ruta');
 		return $this->permisos;
 	}
 
-	public function UsuarioPermisos(){
-		// hasMany = "tiene muchas" | hace relacion desde el maestro hasta el detalle
+	public function UsuarioPermisos()
+	{
 		return $this->hasMany('App\Modules\Base\Models\UsuarioPermisos', 'usuario_id');
 	}
+	
 
-	public function perfil(){
+	public function perfil()
+	{
 		return $this->belongsTo('App\Modules\Base\Models\Perfil');
 	}
+
+	public function personas()
+	{
+        return $this->belongsTo('App\Modules\Base\Models\Personas', 'personas_id');
+    }
+
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 
-use App\Modules\Configuracion\Models\Configuracion;
+use App\Modules\Base\Models\Configuracion;
 
 abstract class Controller extends BaseController
 {
