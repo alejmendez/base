@@ -1,5 +1,5 @@
 <?php
-$controller = app('tomasini\Modules\Base\Http\Controllers\Controller');
+$controller = app('App\Modules\Base\Http\Controllers\Controller');
 $controller->css[] = '404.css';
 
 $data = $controller->_app();
