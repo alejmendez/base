@@ -12,7 +12,12 @@ if (is_null($usuario)){
 	$usuario = (object) [
 		'id' 		=> 0,
 		'usuario' 	=> 'user.png',
-		'nombre' 	=> 'Invitado'
+		'nombre' 	=> 'Invitado',
+		'super'		=> 'n',
+		'personas' => (object) [
+			'foto'      => 'user.jpg',
+			'nombres' 	=> 'Invitado',
+		]
 	];
 }
 ?>

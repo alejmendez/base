@@ -116,7 +116,7 @@ class PerfilController extends Controller {
         try{
           
             $Personas = $id == 0 ? new Personas() : Personas::find($id);
-
+    
             $datos = $this->personas($request, $id);
 
             $Personas->fill($datos);

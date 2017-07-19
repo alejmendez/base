@@ -35,6 +35,16 @@ return [
 					'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'
 				]
 			],
+			'jquery-slimscroll' => [
+				'js' => [
+					'jquery-slimscroll/jquery.slimscroll.min.js',
+				]
+			],
+			'bootstrap-hover-dropdown' => [
+				'js' => [
+					'bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js'
+				]
+			],
 			'OpenSans' => [
 				'css' => [
 					'http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all'
@@ -484,13 +494,19 @@ return [
 				'js' => [
 					'metronic/init_plantilla.js',
 					'metronic/init.js',
-					'metronic/funciones.js'
+					'metronic/funciones.js',
+					'app.min.js'
 				]
 			],
 			'ie' => [
 				'js' => [
 					'respond.min.js',
 					'excanvas.js'
+				]
+			],
+			'jquery-slimscroll' => [
+				'js' => [
+					'jquery-slimscroll/jquery.slimscroll.min.js',
 				]
 			],
 			'OpenSans' => [
@@ -501,6 +517,11 @@ return [
 			'modernizr' => [
 				'js' => [
 					'modernizr.min.js'
+				]
+			],
+			'bootstrap-hover-dropdown' => [
+				'js' => [
+					'bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js'
 				]
 			],
 

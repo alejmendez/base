@@ -38,7 +38,7 @@ abstract class Controller extends BaseController
 		'animate', 'bootstrap', 'bootbox',
 		//'jquery-cookie'
 		'pace', 'jquery-form', 'blockUI', 'jquery-shortcuts', 'pnotify',
-		'metronic'
+		'metronic','bootstrap-hover-dropdown','jquery-slimscroll'
 	];
 
 	protected $libreriaEntorno = '';
