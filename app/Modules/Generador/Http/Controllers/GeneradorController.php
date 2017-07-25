@@ -520,7 +520,7 @@ class GeneradorController extends Controller {
                         }
 
                         $_options = DB::table(snake_case($nombreindice))->get()->all();
-                        //dd($_options);
+                        
                         $_columnas = Schema::getColumnListing(snake_case($nombreindice));
 
                         $propiedades['data'] = [snake_case($nombreindice)];
@@ -538,8 +538,12 @@ class GeneradorController extends Controller {
                         }else{
                             $propiedades['data'][] = $_columnas[1];
                         }
-
+                        
+                        $i = 0;
                         foreach ($_options as $option) {
+                            if (++$i > 25) {
+                                break;
+                            }
                             $propiedades['options'][] = [$option->{$propiedades['data'][1]}, $option->{$propiedades['data'][2]}];
                         }
                     }
