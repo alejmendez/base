@@ -11,9 +11,11 @@ if (is_null($usuario)){
 		'id' 		=> 0,
 		'usuario' 	=> 'user.png',
 		'nombre' 	=> 'Invitado',
-		'apellido' 	=> '',
 		'super'		=> 'n',
-		'foto'      => 'user.jpg'
+		'personas' => (object) [
+			'foto'      => 'user.jpg',
+			'nombres' 	=> 'Invitado',
+		]
 	];
 }
 ?>
@@ -42,4 +44,5 @@ if (is_null($usuario)){
 		</div>
 	</div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('base::layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
