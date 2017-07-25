@@ -118,7 +118,7 @@ class GeneradorController extends Controller {
             'namespace'         => $namespace . '\\Http\\Controllers',
             'namespaceParent'   => $namespace . '\\Http\\Controllers\\Controller',
             'request'           => $namespace . '\\Http\\Requests\\' . studly_case($this->tabla) . 'Request',
-            'model'             => $namespace . '\\Model\\' . studly_case($tabla),
+            'model'             => $namespace . '\\Models\\' . studly_case($tabla),
             'classname'         => studly_case($this->tabla) . 'Controller',
             'titulo'            => $this->nombre(),
             'view'              => strtolower($this->modulo) . '::' . studly_case($this->tabla),
@@ -158,7 +158,7 @@ class GeneradorController extends Controller {
         $columnas = $this->campos;
         
         $data = [
-            'namespace'       => "Modules\\" . studly_case($this->modulo) . "\\Model" . rtrim($this->ruta, '\\'),
+            'namespace'       => "Modules\\" . studly_case($this->modulo) . "\\Models" . rtrim($this->ruta, '\\'),
             'extends'         => 'Model',
             'table'           => $this->tabla,
             'namespaceParent' => 'Illuminate\Database\Eloquent\Model',
@@ -177,7 +177,7 @@ class GeneradorController extends Controller {
 
         if ($this->softDeletes){
             $data['extends'] = 'modelo';
-            $data['namespaceParent'] = 'Modules\Admin\Model\Modelo';
+            $data['namespaceParent'] = 'Modules\Admin\Models\Modelo';
             $data['hidden'][] = 'deleted_at';
         }
 
@@ -371,11 +371,11 @@ class GeneradorController extends Controller {
         $path = Config::get('modules.path');
         $namespace = Config::get('modules.namespace');
         foreach (Module::all() as $key => $modulo) {
-            $namespace_module = $namespace . $modulo->getStudlyName() . '\\Model';
-            $files = $gestor->allFiles($modulo->getStudlyName() . '/Model');
+            $namespace_module = $namespace . $modulo->getStudlyName() . '\\Models';
+            $files = $gestor->allFiles($modulo->getStudlyName() . '/Models');
             
             foreach ($files as $file) {
-                $file = str_replace($modulo->getStudlyName() . '/Model/', '', $file);
+                $file = str_replace($modulo->getStudlyName() . '/Models/', '', $file);
                 $file = substr($file, 0, -4);
 
                 $modelos[] = [

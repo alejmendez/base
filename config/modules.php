@@ -99,7 +99,7 @@ return [
             //'event'         => 'Events',
             //'listener'      => 'Listeners',
             'migration'     => 'Database/Migrations',
-            'model'         => 'models',
+            'model'         => 'Models',
             //'repository'    => 'Repositories',
             'seeder'        => 'Database/Seeders',
             'controller'    => 'Http/Controllers',
