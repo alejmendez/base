@@ -50,6 +50,30 @@ $menu['base'] = [
 				]
 			],
 			[
+				'nombre' 	=> 'Noficiaciones',
+				'direccion' => '#Noficiaciones',
+				'icono' 	=> 'fa fa-comment',
+				'menu' 		=> [
+					[ 
+						'nombre' 	=> 'Definiciones',
+						'direccion' => '#DefinicionesNoficiaciones',
+						'icono' 	=> 'fa fa-gear',
+						'menu' 		=> [				
+							[
+								'nombre' 	=> 'Mensaje',
+								'direccion' => 'notificacion/mensaje',
+								'icono' 	=> 'fa fa-envelope-o'
+							],
+							[
+								'nombre' 	=> 'Tipo de Notificacion',
+								'direccion' => 'notificacion/tipo_notificacion',
+								'icono' 	=> 'fa fa-envelope-o'
+							]
+						]
+					]	
+				]
+			],
+			[
 				'nombre' 	=> 'Configuracion',
 				'direccion' => 'configuracion',
 				'icono' 	=> 'fa fa-gear'

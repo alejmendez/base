@@ -15,12 +15,10 @@ class Notificaciones extends Migration
     {
         Schema::create('mensaje', function(Blueprint $table){
             $table->increments('id');
-            $table->string('mensaje', 200);  
-
+            $table->string('mensaje', 200);
             $table->timestamps();
             $table->softDeletes();
         });
-
         Schema::create('tipo_notificacion', function(Blueprint $table){
             $table->increments('id');
             $table->string('nombre', 200);//mjs nuevo
@@ -28,7 +26,6 @@ class Notificaciones extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-        // "/msj/3"
         Schema::create('notificaciones', function(Blueprint $table){
             $table->increments('id');
             $table->integer('usuario_id')->unsigned();

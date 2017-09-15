@@ -106,7 +106,7 @@ class GeneradorController extends Controller {
     }
 
     protected function controllers(){
-        $namespace = 'Modules\\' . studly_case($this->modulo);
+        $namespace = 'App\Modules\\' . studly_case($this->modulo);
         $tabla = strtolower($this->tabla);
 
         $campos = ['id'];
@@ -145,7 +145,7 @@ class GeneradorController extends Controller {
         }
 
         $this->archivo($this->modulo, 'request', '', [
-            'namespace' => "Modules\\" . studly_case($this->modulo) . "\\Http\\Requests",
+            'namespace' => "App\Modules\\" . studly_case($this->modulo) . "\\Http\\Requests",
             'classname' => studly_case($this->tabla) . 'Request',
             'table' => $this->tabla,
             'rules' => "[\n\t\t" . implode(", \n\t\t", $reglas) . "\n\t]"
@@ -158,7 +158,7 @@ class GeneradorController extends Controller {
         $columnas = $this->campos;
         
         $data = [
-            'namespace'       => "Modules\\" . studly_case($this->modulo) . "\\Models" . rtrim($this->ruta, '\\'),
+            'namespace'       => "App\Modules\\" . studly_case($this->modulo) . "\\Models" . rtrim($this->ruta, '\\'),
             'extends'         => 'Model',
             'table'           => $this->tabla,
             'namespaceParent' => 'Illuminate\Database\Eloquent\Model',
@@ -176,8 +176,8 @@ class GeneradorController extends Controller {
         }
 
         if ($this->softDeletes){
-            $data['extends'] = 'modelo';
-            $data['namespaceParent'] = 'Modules\Admin\Models\Modelo';
+            $data['extends'] = 'Modelo';
+            $data['namespaceParent'] = 'App\Modules\Base\Models\Modelo';
             $data['hidden'][] = 'deleted_at';
         }
 
@@ -228,11 +228,9 @@ class GeneradorController extends Controller {
             $metodo = snake_case($metodo);
             //dd($metodo);
             $data['metodos'] .= "public function " . $metodo . "()
-    {
-        return \$this->" . $relacion . "('" . $this->model[$id] . "'" . ($this->foreign_key[$id] != '' ? ", " . $this->foreign_key[$id] : '') . ($this->local_key[$id] != '' ? ", " . $this->local_key[$id] : '') . ");
-    }
-
-    "; 
+            {
+                return \$this->" . $relacion . "('" . $this->model[$id] . "'" . ($this->foreign_key[$id] != '' ? ", " . $this->foreign_key[$id] : '') . ($this->local_key[$id] != '' ? ", " . $this->local_key[$id] : '') . ");
+            }"; 
         }
 
 
@@ -316,22 +314,22 @@ class GeneradorController extends Controller {
             if (strpos($linea, '//{{route}}') !== false && !$insercion){
                 $insercion = true;
                 $linea = "
-    Route::group(['prefix' => '$this->tabla'], function() {
-        Route::get('/',                 '$class@index');
-        Route::get('nuevo',             '$class@nuevo');
-        Route::get('cambiar/{id}',      '$class@cambiar');
-        
-        Route::get('buscar/{id}',       '$class@buscar');
+        Route::group(['prefix' => '$this->tabla'], function() {
+            Route::get('/',                 '$class@index');
+            Route::get('nuevo',             '$class@nuevo');
+            Route::get('cambiar/{id}',      '$class@cambiar');
+            
+            Route::get('buscar/{id}',       '$class@buscar');
 
-        Route::post('guardar',          '$class@guardar');
-        Route::put('guardar/{id}',      '$class@guardar');
+            Route::post('guardar',          '$class@guardar');
+            Route::put('guardar/{id}',      '$class@guardar');
 
-        Route::delete('eliminar/{id}',  '$class@eliminar');
-        Route::post('restaurar/{id}',   '$class@restaurar');
-        Route::delete('destruir/{id}',  '$class@destruir');
+            Route::delete('eliminar/{id}',  '$class@eliminar');
+            Route::post('restaurar/{id}',   '$class@restaurar');
+            Route::delete('destruir/{id}',  '$class@destruir');
 
-        Route::get('datatable',         '$class@datatable');
-    });\n\n" . $linea;
+            Route::get('datatable',         '$class@datatable');
+        });\n\n" . $linea;
             }
             $contenido .= $linea . "\n";
         }
@@ -375,7 +373,7 @@ class GeneradorController extends Controller {
             $files = $gestor->allFiles($modulo->getStudlyName() . '/Models');
             
             foreach ($files as $file) {
-                $file = str_replace($modulo->getStudlyName() . '/Models/', '', $file);
+                $file = str_replace($modulo->getStudlyName() .'\\'.  '/Models/', '', $file);
                 $file = substr($file, 0, -4);
 
                 $modelos[] = [
@@ -553,7 +551,6 @@ class GeneradorController extends Controller {
             }
 
             $propiedades['validate'] = $validate;
-
 
             $campos[$nombre_columna] = $propiedades;
         }
